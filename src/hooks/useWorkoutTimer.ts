@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { WorkoutStep } from '../types/workout'
+import type { WorkoutStep } from '@/types/workout'
 
 export type TimerStatus = 'idle' | 'running' | 'paused' | 'complete'
 

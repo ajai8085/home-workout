@@ -1,4 +1,4 @@
-import type { WorkoutStep } from '../types/workout'
+import type { WorkoutStep } from '@/types/workout'
 
 // Total: 1200 s = 20 min exactly
 // Mobility 240s + Strength×2 180s each + Cardio×2 240s each + Cooldown 120s

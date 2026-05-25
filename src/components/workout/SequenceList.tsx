@@ -1,6 +1,6 @@
 import React from 'react'
-import type { PhaseType, WorkoutStep } from '../../types/workout'
-import { PHASE_COLORS, REST_COLOR } from '../../types/workout'
+import type { PhaseType, WorkoutStep } from '@/types/workout'
+import { PHASE_COLORS, REST_COLOR } from '@/types/workout'
 
 interface Props {
   steps: WorkoutStep[]

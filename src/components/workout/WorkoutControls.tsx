@@ -1,5 +1,5 @@
 import React from 'react'
-import type { TimerStatus } from '../../hooks/useWorkoutTimer'
+import type { TimerStatus } from '@/hooks/useWorkoutTimer'
 
 interface Props {
   status: TimerStatus

@@ -1,5 +1,5 @@
 import React from 'react'
-import { REST_COLOR, WARNING_COLOR } from '../../types/workout'
+import { REST_COLOR, WARNING_COLOR } from '@/types/workout'
 
 interface Props {
   seconds: number

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { CompletionScreen } from './components/workout/CompletionScreen'
-import { StartOverlay } from './components/workout/StartOverlay'
-import { WorkoutScreen } from './components/workout/WorkoutScreen'
-import { useAudio } from './hooks/useAudio'
+import { CompletionScreen } from '@/components/workout/CompletionScreen'
+import { StartOverlay } from '@/components/workout/StartOverlay'
+import { WorkoutScreen } from '@/components/workout/WorkoutScreen'
+import { useAudio } from '@/hooks/useAudio'
 import './App.css'
 
 type AppScreen = 'start' | 'workout' | 'complete'

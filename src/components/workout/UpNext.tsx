@@ -1,5 +1,5 @@
 import React from 'react'
-import type { WorkoutStep } from '../../types/workout'
+import type { WorkoutStep } from '@/types/workout'
 
 interface Props {
   step: WorkoutStep | undefined
