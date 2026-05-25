@@ -1,9 +1,11 @@
+import React from 'react'
+
 interface Props {
   current: number
   total: number
 }
 
-export function StepCounter({ current, total }: Props) {
+export const StepCounter: React.FC<Props> = ({ current, total }) => {
   return (
     <div className="font-mono text-xs tracking-wider text-[var(--color-muted)]">
       {current} / {total}

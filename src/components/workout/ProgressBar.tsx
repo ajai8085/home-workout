@@ -1,9 +1,11 @@
+import React from 'react'
+
 interface Props {
   progress: number
   color: string
 }
 
-export function ProgressBar({ progress, color }: Props) {
+export const ProgressBar: React.FC<Props> = ({ progress, color }) => {
   return (
     <div className="h-1 w-full overflow-hidden rounded-full bg-[var(--color-border)]">
       <div

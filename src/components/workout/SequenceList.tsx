@@ -1,3 +1,4 @@
+import React from 'react'
 import type { PhaseType, WorkoutStep } from '../../types/workout'
 import { PHASE_COLORS, REST_COLOR } from '../../types/workout'
 
@@ -6,47 +7,50 @@ interface Props {
   currentIndex: number
 }
 
-function phaseHeadings(steps: WorkoutStep[]) {
-  const phases: { phase: PhaseType; label: string; start: number }[] = []
-  steps.forEach((step, i) => {
-    if (i === 0 || step.phase !== steps[i - 1].phase) {
-      phases.push({ phase: step.phase, label: step.phaseLabel, start: i })
-    }
-  })
-  return phases
+interface PhaseGroup {
+  phase: PhaseType
+  label: string
+  start: number
 }
 
-export function SequenceList({ steps, currentIndex }: Props) {
-  const phases = phaseHeadings(steps)
+const buildPhaseGroups = (steps: WorkoutStep[]): PhaseGroup[] => {
+  const groups: PhaseGroup[] = []
+  steps.forEach((step, i) => {
+    if (i === 0 || step.phase !== steps[i - 1].phase) {
+      groups.push({ phase: step.phase, label: step.phaseLabel, start: i })
+    }
+  })
+  return groups
+}
+
+export const SequenceList: React.FC<Props> = ({ steps, currentIndex }) => {
+  const groups = buildPhaseGroups(steps)
 
   return (
-    <div className="w-full space-y-1 border-t border-[var(--color-border)] pt-4 pb-2">
-      <p className="mb-3 px-1 font-mono text-[10px] tracking-widest text-[var(--color-muted)] uppercase">
+    <div className="w-full space-y-1 border-t border-[var(--color-border)] pb-2 pt-4">
+      <p className="mb-3 px-1 font-mono text-[10px] uppercase tracking-widest text-[var(--color-muted)]">
         Full Sequence
       </p>
-      {phases.map((ph) => {
-        const phaseSteps = steps.filter((s) => s.phase === ph.phase)
-        const phaseComplete = phaseSteps.every((s) => s.id < currentIndex)
-        const phaseActive = phaseSteps.some((s) => s.id === currentIndex)
-        const color = PHASE_COLORS[ph.phase]
+      {groups.map((group) => {
+        const groupSteps = steps.filter((s) => s.phase === group.phase)
+        const groupComplete = groupSteps.every((s) => s.id < currentIndex)
+        const groupActive = groupSteps.some((s) => s.id === currentIndex)
+        const color = PHASE_COLORS[group.phase]
 
         return (
-          <div key={ph.phase}>
+          <div key={group.phase}>
             <div
-              className="mb-0.5 flex items-center gap-1 px-1 font-mono text-[10px] tracking-widest uppercase"
+              className="mb-0.5 flex items-center gap-1 px-1 font-mono text-[10px] uppercase tracking-widest"
               style={{
-                color: phaseComplete
-                  ? 'var(--color-muted)'
-                  : phaseActive
-                    ? color
-                    : 'var(--color-muted)',
-                opacity: phaseComplete ? 0.5 : 1,
+                color: groupComplete ? 'var(--color-muted)' : groupActive ? color : 'var(--color-muted)',
+                opacity: groupComplete ? 0.5 : 1,
               }}
             >
-              {phaseComplete && <span className="opacity-60">✓</span>}
-              {ph.label}
+              {groupComplete && <span className="opacity-60">✓</span>}
+              {group.label}
             </div>
-            {phaseSteps.map((step) => {
+
+            {groupSteps.map((step) => {
               const isDone = step.id < currentIndex
               const isCurrent = step.id === currentIndex
               const stepColor = step.type === 'rest' ? REST_COLOR : color
@@ -62,15 +66,14 @@ export function SequenceList({ steps, currentIndex }: Props) {
                     textDecoration: isDone ? 'line-through' : 'none',
                   }}
                 >
-                  {isCurrent && (
+                  {isCurrent ? (
                     <span className="text-[8px]" style={{ color: stepColor }}>
                       ●
                     </span>
+                  ) : (
+                    <span className="w-2" />
                   )}
-                  {!isCurrent && <span className="w-2" />}
-                  <span className={step.type === 'rest' ? 'italic opacity-60' : ''}>
-                    {step.exercise}
-                  </span>
+                  <span className={step.type === 'rest' ? 'italic opacity-60' : ''}>{step.exercise}</span>
                   <span className="ml-auto text-[10px] opacity-50">{step.duration}s</span>
                 </div>
               )

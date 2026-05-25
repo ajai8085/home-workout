@@ -1,3 +1,4 @@
+import React from 'react'
 import { REST_COLOR, WARNING_COLOR } from '../../types/workout'
 
 interface Props {
@@ -7,13 +8,13 @@ interface Props {
   phaseColor: string
 }
 
-export function CountdownClock({ seconds, isWarning, isRest, phaseColor }: Props) {
+export const CountdownClock: React.FC<Props> = ({ seconds, isWarning, isRest, phaseColor }) => {
   const display = String(seconds).padStart(2, '0')
   const color = isWarning ? WARNING_COLOR : isRest ? REST_COLOR : phaseColor
 
   return (
     <div
-      className="font-display text-[96px] leading-none font-bold tabular-nums select-none"
+      className="select-none font-display text-[96px] font-bold leading-none tabular-nums"
       style={{
         color,
         animation: isWarning ? 'clock-pulse 0.8s ease-in-out infinite' : undefined,

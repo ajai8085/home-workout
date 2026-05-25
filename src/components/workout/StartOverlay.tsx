@@ -1,14 +1,15 @@
+import React from 'react'
+
 interface Props {
   onStart: () => void
 }
 
-export function StartOverlay({ onStart }: Props) {
+export const StartOverlay: React.FC<Props> = ({ onStart }) => {
   return (
     <div
       className="flex min-h-dvh w-full flex-col items-center justify-center px-6"
       style={{ background: 'var(--color-bg)' }}
     >
-      {/* Radial glow */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -20,13 +21,13 @@ export function StartOverlay({ onStart }: Props) {
       <div className="relative flex w-full max-w-sm flex-col items-center gap-8 text-center">
         <div className="flex flex-col gap-2">
           <p
-            className="font-mono text-xs tracking-widest uppercase"
+            className="font-mono text-xs uppercase tracking-widest"
             style={{ color: 'var(--color-lime)', opacity: 0.8 }}
           >
             20-Min Home Workout
           </p>
           <h1
-            className="font-display text-5xl leading-none font-bold uppercase"
+            className="font-display text-5xl font-bold uppercase leading-none"
             style={{ color: 'var(--color-lime)' }}
           >
             Ready to
@@ -39,12 +40,14 @@ export function StartOverlay({ onStart }: Props) {
           className="w-full space-y-2 rounded-2xl p-5 text-left"
           style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}
         >
-          {[
-            ['Mobility', '4 min', '#d4ff3a'],
-            ['Strength × 2', '6 min', '#ff8c3a'],
-            ['Cardio × 2', '8 min', '#ff3a6b'],
-            ['Cool Down', '2 min', '#9b7dff'],
-          ].map(([label, time, col]) => (
+          {(
+            [
+              ['Mobility', '4 min', '#d4ff3a'],
+              ['Strength × 2', '6 min', '#ff8c3a'],
+              ['Cardio × 2', '8 min', '#ff3a6b'],
+              ['Cool Down', '2 min', '#9b7dff'],
+            ] as [string, string, string][]
+          ).map(([label, time, col]) => (
             <div key={label} className="flex items-center justify-between font-mono text-sm">
               <span style={{ color: col }}>{label}</span>
               <span style={{ color: 'var(--color-muted)' }}>{time}</span>
@@ -58,7 +61,7 @@ export function StartOverlay({ onStart }: Props) {
 
         <button
           onClick={onStart}
-          className="font-display w-full rounded-2xl py-5 text-2xl font-bold tracking-wider uppercase transition-all active:scale-95"
+          className="w-full rounded-2xl py-5 font-display text-2xl font-bold uppercase tracking-wider transition-all active:scale-95"
           style={{
             background: 'var(--color-lime)',
             color: 'var(--color-bg)',

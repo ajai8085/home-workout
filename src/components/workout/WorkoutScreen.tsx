@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { ExerciseAnimation } from '../animations/ExerciseAnimation'
 import { TOTAL_DURATION, WORKOUT_STEPS } from '../../data/workoutData'
 import type { AudioControls } from '../../hooks/useAudio'
@@ -21,7 +21,7 @@ interface Props {
   onReset: () => void
 }
 
-export function WorkoutScreen({ audio, onComplete, onReset }: Props) {
+export const WorkoutScreen: React.FC<Props> = ({ audio, onComplete, onReset }) => {
   const wakeLock = useWakeLock()
   const hasStarted = useRef(false)
 
@@ -59,7 +59,6 @@ export function WorkoutScreen({ audio, onComplete, onReset }: Props) {
       className="flex min-h-dvh w-full flex-col"
       style={{ background: 'var(--color-bg)', maxWidth: 480, margin: '0 auto' }}
     >
-      {/* Ambient glow that matches current phase */}
       <div
         className="pointer-events-none fixed inset-0 transition-all duration-1000"
         style={{
@@ -67,25 +66,19 @@ export function WorkoutScreen({ audio, onComplete, onReset }: Props) {
         }}
       />
 
-      <div className="relative flex flex-col gap-4 px-4 pt-4 pb-8">
-        {/* Top progress bar */}
+      <div className="relative flex flex-col gap-4 px-4 pb-8 pt-4">
         <ProgressBar progress={progressPct} color={phaseColor} />
 
-        {/* Phase badge */}
         <div className="flex justify-center">
           <PhaseTag label={currentStep.phaseLabel} color={phaseColor} />
         </div>
 
-        {/* SVG figure */}
         <ExerciseAnimation animationKey={currentStep.animation} color={phaseColor} />
 
-        {/* Exercise title */}
         <ExerciseName name={currentStep.exercise} color={phaseColor} />
 
-        {/* Form hint */}
         <FormHint hint={currentStep.hint} />
 
-        {/* Countdown */}
         <div className="flex flex-col items-center gap-1">
           <CountdownClock
             seconds={timer.timeRemaining}
@@ -96,12 +89,10 @@ export function WorkoutScreen({ audio, onComplete, onReset }: Props) {
           <StepCounter current={timer.stepIndex + 1} total={WORKOUT_STEPS.length} />
         </div>
 
-        {/* Up next */}
         <div className="flex justify-center">
           <UpNext step={nextStep} />
         </div>
 
-        {/* Controls */}
         <div className="mt-2 flex justify-center">
           <WorkoutControls
             status={timer.status}
@@ -113,7 +104,6 @@ export function WorkoutScreen({ audio, onComplete, onReset }: Props) {
           />
         </div>
 
-        {/* Sequence list */}
         <SequenceList steps={WORKOUT_STEPS} currentIndex={timer.stepIndex} />
       </div>
     </div>

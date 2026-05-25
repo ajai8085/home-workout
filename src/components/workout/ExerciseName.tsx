@@ -1,12 +1,14 @@
+import React from 'react'
+
 interface Props {
   name: string
   color: string
 }
 
-export function ExerciseName({ name, color }: Props) {
+export const ExerciseName: React.FC<Props> = ({ name, color }) => {
   return (
     <h1
-      className="font-display px-4 text-center text-4xl leading-none font-bold tracking-tight uppercase"
+      className="px-4 text-center font-display text-4xl font-bold uppercase leading-none tracking-tight"
       style={{ color }}
     >
       {name}

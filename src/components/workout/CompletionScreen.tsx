@@ -1,8 +1,10 @@
+import React from 'react'
+
 interface Props {
   onReset: () => void
 }
 
-export function CompletionScreen({ onReset }: Props) {
+export const CompletionScreen: React.FC<Props> = ({ onReset }) => {
   return (
     <div
       className="flex min-h-dvh w-full flex-col items-center justify-center px-6"
@@ -22,7 +24,7 @@ export function CompletionScreen({ onReset }: Props) {
             🎉
           </div>
           <h1
-            className="font-display text-5xl leading-none font-bold uppercase"
+            className="font-display text-5xl font-bold uppercase leading-none"
             style={{ color: 'var(--color-purple)' }}
           >
             Workout
@@ -39,14 +41,14 @@ export function CompletionScreen({ onReset }: Props) {
           style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}
         >
           <p className="font-mono text-xs leading-relaxed" style={{ color: 'var(--color-text)' }}>
-            Great session! You worked through mobility, two strength rounds, two cardio rounds, and
-            a full cool-down. Hydrate, rest, and do this again tomorrow.
+            Great session! You worked through mobility, two strength rounds, two cardio rounds, and a
+            full cool-down. Hydrate, rest, and do this again tomorrow.
           </p>
         </div>
 
         <button
           onClick={onReset}
-          className="font-display w-full rounded-2xl py-5 text-2xl font-bold tracking-wider uppercase transition-all active:scale-95"
+          className="w-full rounded-2xl py-5 font-display text-2xl font-bold uppercase tracking-wider transition-all active:scale-95"
           style={{
             background: 'var(--color-purple)',
             color: '#fff',

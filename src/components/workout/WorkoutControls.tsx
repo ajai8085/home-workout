@@ -1,3 +1,4 @@
+import React from 'react'
 import type { TimerStatus } from '../../hooks/useWorkoutTimer'
 
 interface Props {
@@ -9,7 +10,14 @@ interface Props {
   onReset: () => void
 }
 
-export function WorkoutControls({ status, phaseColor, onPause, onResume, onSkip, onReset }: Props) {
+export const WorkoutControls: React.FC<Props> = ({
+  status,
+  phaseColor,
+  onPause,
+  onResume,
+  onSkip,
+  onReset,
+}) => {
   const isPaused = status === 'paused'
 
   return (
@@ -24,7 +32,7 @@ export function WorkoutControls({ status, phaseColor, onPause, onResume, onSkip,
 
       <button
         onClick={isPaused ? onResume : onPause}
-        className="font-display flex h-16 w-16 items-center justify-center rounded-full text-xl font-bold transition-all active:scale-95"
+        className="flex h-16 w-16 items-center justify-center rounded-full font-display text-xl font-bold transition-all active:scale-95"
         style={{
           background: phaseColor,
           color: '#0a0e0d',

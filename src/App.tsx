@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { CompletionScreen } from './components/workout/CompletionScreen'
 import { StartOverlay } from './components/workout/StartOverlay'
 import { WorkoutScreen } from './components/workout/WorkoutScreen'
@@ -7,7 +7,7 @@ import './App.css'
 
 type AppScreen = 'start' | 'workout' | 'complete'
 
-function App() {
+const App: React.FC = () => {
   const [screen, setScreen] = useState<AppScreen>('start')
   const audio = useAudio()
 

@@ -1,3 +1,4 @@
+import React from 'react'
 import type { AnimationKey } from '../../types/workout'
 import { ArmCirclesFigure } from './figures/ArmCirclesFigure'
 import { BirdDogFigure } from './figures/BirdDogFigure'
@@ -24,7 +25,7 @@ interface Props {
   color: string
 }
 
-const FIGURE_MAP: Record<AnimationKey, React.ComponentType<{ color: string }>> = {
+const FIGURE_MAP: Record<AnimationKey, React.FC<{ color: string }>> = {
   march: MarchFigure,
   'cat-cow': CatCowFigure,
   'hip-circles': HipCirclesFigure,
@@ -46,7 +47,7 @@ const FIGURE_MAP: Record<AnimationKey, React.ComponentType<{ color: string }>> =
   rest: RestFigure,
 }
 
-export function ExerciseAnimation({ animationKey, color }: Props) {
+export const ExerciseAnimation: React.FC<Props> = ({ animationKey, color }) => {
   const Figure = FIGURE_MAP[animationKey] ?? RestFigure
 
   return (
