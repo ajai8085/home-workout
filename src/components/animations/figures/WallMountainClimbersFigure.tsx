@@ -9,7 +9,15 @@ export const WallMountainClimbersFigure: React.FC<Props> = ({ color }) => {
 
   return (
     <svg viewBox="0 0 220 270" fill="none" {...s}>
-      <line x1="185" y1="20" x2="185" y2="255" stroke={color} strokeOpacity={0.35} strokeWidth={5} />
+      <line
+        x1="185"
+        y1="20"
+        x2="185"
+        y2="255"
+        stroke={color}
+        strokeOpacity={0.35}
+        strokeWidth={5}
+      />
       <circle cx="55" cy="58" r="16" />
       <line x1="55" y1="74" x2="90" y2="175" />
       <line x1="68" y1="98" x2="158" y2="112" />

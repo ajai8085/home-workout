@@ -16,17 +16,26 @@ export const HighKneeMarchFigure: React.FC<Props> = ({ color }) => {
         y1="80"
         x2="72"
         y2="115"
-        style={{ transformOrigin: '100px 80px', animation: 'march-back-arm 0.5s ease-in-out infinite alternate' }}
+        style={{
+          transformOrigin: '100px 80px',
+          animation: 'march-back-arm 0.5s ease-in-out infinite alternate',
+        }}
       />
       <line
         x1="100"
         y1="80"
         x2="128"
         y2="112"
-        style={{ transformOrigin: '100px 80px', animation: 'march-front-arm 0.5s ease-in-out infinite alternate' }}
+        style={{
+          transformOrigin: '100px 80px',
+          animation: 'march-front-arm 0.5s ease-in-out infinite alternate',
+        }}
       />
       <g
-        style={{ transformOrigin: '100px 148px', animation: 'march-back-thigh 0.5s ease-in-out infinite alternate' }}
+        style={{
+          transformOrigin: '100px 148px',
+          animation: 'march-back-thigh 0.5s ease-in-out infinite alternate',
+        }}
       >
         <line x1="100" y1="148" x2="78" y2="205" />
         <line
@@ -34,7 +43,10 @@ export const HighKneeMarchFigure: React.FC<Props> = ({ color }) => {
           y1="205"
           x2="66"
           y2="250"
-          style={{ transformOrigin: '78px 205px', animation: 'march-back-shin 0.5s ease-in-out infinite alternate' }}
+          style={{
+            transformOrigin: '78px 205px',
+            animation: 'march-back-shin 0.5s ease-in-out infinite alternate',
+          }}
         />
       </g>
       <g

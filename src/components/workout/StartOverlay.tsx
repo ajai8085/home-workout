@@ -21,13 +21,13 @@ export const StartOverlay: React.FC<Props> = ({ onStart }) => {
       <div className="relative flex w-full max-w-sm flex-col items-center gap-8 text-center">
         <div className="flex flex-col gap-2">
           <p
-            className="font-mono text-xs uppercase tracking-widest"
+            className="font-mono text-xs tracking-widest uppercase"
             style={{ color: 'var(--color-lime)', opacity: 0.8 }}
           >
             20-Min Home Workout
           </p>
           <h1
-            className="font-display text-5xl font-bold uppercase leading-none"
+            className="font-display text-5xl leading-none font-bold uppercase"
             style={{ color: 'var(--color-lime)' }}
           >
             Ready to
@@ -61,7 +61,7 @@ export const StartOverlay: React.FC<Props> = ({ onStart }) => {
 
         <button
           onClick={onStart}
-          className="w-full rounded-2xl py-5 font-display text-2xl font-bold uppercase tracking-wider transition-all active:scale-95"
+          className="font-display w-full rounded-2xl py-5 text-2xl font-bold tracking-wider uppercase transition-all active:scale-95"
           style={{
             background: 'var(--color-lime)',
             color: 'var(--color-bg)',

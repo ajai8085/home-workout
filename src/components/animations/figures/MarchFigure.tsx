@@ -16,17 +16,26 @@ export const MarchFigure: React.FC<Props> = ({ color }) => {
         y1="80"
         x2="78"
         y2="128"
-        style={{ transformOrigin: '100px 80px', animation: 'march-back-arm 0.7s ease-in-out infinite alternate' }}
+        style={{
+          transformOrigin: '100px 80px',
+          animation: 'march-back-arm 0.7s ease-in-out infinite alternate',
+        }}
       />
       <line
         x1="100"
         y1="80"
         x2="125"
         y2="120"
-        style={{ transformOrigin: '100px 80px', animation: 'march-front-arm 0.7s ease-in-out infinite alternate' }}
+        style={{
+          transformOrigin: '100px 80px',
+          animation: 'march-front-arm 0.7s ease-in-out infinite alternate',
+        }}
       />
       <g
-        style={{ transformOrigin: '100px 148px', animation: 'march-back-thigh 0.7s ease-in-out infinite alternate' }}
+        style={{
+          transformOrigin: '100px 148px',
+          animation: 'march-back-thigh 0.7s ease-in-out infinite alternate',
+        }}
       >
         <line x1="100" y1="148" x2="80" y2="205" />
         <line
@@ -34,7 +43,10 @@ export const MarchFigure: React.FC<Props> = ({ color }) => {
           y1="205"
           x2="68"
           y2="250"
-          style={{ transformOrigin: '80px 205px', animation: 'march-back-shin 0.7s ease-in-out infinite alternate' }}
+          style={{
+            transformOrigin: '80px 205px',
+            animation: 'march-back-shin 0.7s ease-in-out infinite alternate',
+          }}
         />
       </g>
       <g

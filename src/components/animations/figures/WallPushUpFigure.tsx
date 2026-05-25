@@ -9,7 +9,15 @@ export const WallPushUpFigure: React.FC<Props> = ({ color }) => {
 
   return (
     <svg viewBox="0 0 220 270" fill="none" {...s}>
-      <line x1="185" y1="20" x2="185" y2="255" stroke={color} strokeOpacity={0.35} strokeWidth={5} />
+      <line
+        x1="185"
+        y1="20"
+        x2="185"
+        y2="255"
+        stroke={color}
+        strokeOpacity={0.35}
+        strokeWidth={5}
+      />
       <g style={{ animation: 'wall-push-body 1s ease-in-out infinite alternate' }}>
         <circle cx="58" cy="62" r="16" />
         <line x1="58" y1="78" x2="80" y2="158" />

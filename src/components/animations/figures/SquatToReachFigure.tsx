@@ -13,10 +13,14 @@ export const SquatToReachFigure: React.FC<Props> = ({ color }) => {
       <g style={{ animation: 'str-body 1.8s ease-in-out infinite' }}>
         <line x1="100" y1="48" x2="100" y2="148" />
         <line x1="82" y1="148" x2="118" y2="148" />
-        <g style={{ transformOrigin: '72px 78px', animation: 'str-arms 1.8s ease-in-out infinite' }}>
+        <g
+          style={{ transformOrigin: '72px 78px', animation: 'str-arms 1.8s ease-in-out infinite' }}
+        >
           <line x1="72" y1="78" x2="50" y2="32" />
         </g>
-        <g style={{ transformOrigin: '128px 78px', animation: 'str-arms 1.8s ease-in-out infinite' }}>
+        <g
+          style={{ transformOrigin: '128px 78px', animation: 'str-arms 1.8s ease-in-out infinite' }}
+        >
           <line x1="128" y1="78" x2="150" y2="32" />
         </g>
         <line x1="72" y1="78" x2="128" y2="78" />

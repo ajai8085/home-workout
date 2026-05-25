@@ -66,7 +66,7 @@ export const WorkoutScreen: React.FC<Props> = ({ audio, onComplete, onReset }) =
         }}
       />
 
-      <div className="relative flex flex-col gap-4 px-4 pb-8 pt-4">
+      <div className="relative flex flex-col gap-4 px-4 pt-4 pb-8">
         <ProgressBar progress={progressPct} color={phaseColor} />
 
         <div className="flex justify-center">

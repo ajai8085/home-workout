@@ -24,7 +24,10 @@ export const ArmCirclesFigure: React.FC<Props> = ({ color }) => {
         y1="78"
         x2="150"
         y2="132"
-        style={{ transformOrigin: '128px 78px', animation: 'arm-circles-right 1.2s linear infinite' }}
+        style={{
+          transformOrigin: '128px 78px',
+          animation: 'arm-circles-right 1.2s linear infinite',
+        }}
       />
       <line x1="82" y1="148" x2="118" y2="148" />
       <line x1="82" y1="148" x2="75" y2="205" />

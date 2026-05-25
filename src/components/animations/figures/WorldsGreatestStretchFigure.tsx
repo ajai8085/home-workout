@@ -17,7 +17,10 @@ export const WorldsGreatestStretchFigure: React.FC<Props> = ({ color }) => {
         y1="85"
         x2="145"
         y2="120"
-        style={{ transformOrigin: '118px 85px', animation: 'wgs-arm 2s ease-in-out infinite alternate' }}
+        style={{
+          transformOrigin: '118px 85px',
+          animation: 'wgs-arm 2s ease-in-out infinite alternate',
+        }}
       />
       <line x1="105" y1="130" x2="88" y2="155" />
       <line x1="88" y1="155" x2="88" y2="250" />

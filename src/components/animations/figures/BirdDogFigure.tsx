@@ -19,7 +19,10 @@ export const BirdDogFigure: React.FC<Props> = ({ color }) => {
         y1="115"
         x2="28"
         y2="110"
-        style={{ transformOrigin: '60px 115px', animation: 'bird-dog-arm 1.6s ease-in-out infinite alternate' }}
+        style={{
+          transformOrigin: '60px 115px',
+          animation: 'bird-dog-arm 1.6s ease-in-out infinite alternate',
+        }}
       />
       <line x1="80" y1="115" x2="80" y2="158" />
       <line x1="70" y1="158" x2="95" y2="158" />
@@ -28,7 +31,10 @@ export const BirdDogFigure: React.FC<Props> = ({ color }) => {
         y1="115"
         x2="148"
         y2="110"
-        style={{ transformOrigin: '110px 115px', animation: 'bird-dog-leg 1.6s ease-in-out infinite alternate' }}
+        style={{
+          transformOrigin: '110px 115px',
+          animation: 'bird-dog-leg 1.6s ease-in-out infinite alternate',
+        }}
       />
       <line x1="25" y1="163" x2="195" y2="163" strokeDasharray="4 4" strokeOpacity={0.3} />
     </svg>

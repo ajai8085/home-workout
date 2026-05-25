@@ -27,14 +27,20 @@ export const StandingForwardFoldFigure: React.FC<Props> = ({ color }) => {
           y1="88"
           x2="82"
           y2="132"
-          style={{ transformOrigin: '100px 88px', animation: 'sff-arms 2s ease-in-out infinite alternate' }}
+          style={{
+            transformOrigin: '100px 88px',
+            animation: 'sff-arms 2s ease-in-out infinite alternate',
+          }}
         />
         <line
           x1="100"
           y1="88"
           x2="118"
           y2="132"
-          style={{ transformOrigin: '100px 88px', animation: 'sff-arms 2s ease-in-out infinite alternate' }}
+          style={{
+            transformOrigin: '100px 88px',
+            animation: 'sff-arms 2s ease-in-out infinite alternate',
+          }}
         />
       </g>
       <circle

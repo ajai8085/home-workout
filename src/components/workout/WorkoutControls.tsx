@@ -24,7 +24,7 @@ export const WorkoutControls: React.FC<Props> = ({
     <div className="flex items-center gap-4">
       <button
         onClick={onReset}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] font-mono text-sm text-[var(--color-muted)] transition-colors hover:border-[var(--color-muted)] hover:text-[var(--color-text)]"
+        className="flex h-10 w-10 items-center justify-center rounded-none border border-[var(--color-border)] font-mono text-sm text-[var(--color-muted)] transition-colors hover:border-[var(--color-muted)] hover:text-[var(--color-text)]"
         aria-label="Reset workout"
       >
         ↺
@@ -32,7 +32,7 @@ export const WorkoutControls: React.FC<Props> = ({
 
       <button
         onClick={isPaused ? onResume : onPause}
-        className="flex h-16 w-16 items-center justify-center rounded-full font-display text-xl font-bold transition-all active:scale-95"
+        className="font-display flex h-16 w-16 items-center justify-center rounded-none text-xl font-bold transition-all active:scale-95"
         style={{
           background: phaseColor,
           color: '#0a0e0d',
@@ -45,7 +45,7 @@ export const WorkoutControls: React.FC<Props> = ({
 
       <button
         onClick={onSkip}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-border)] font-mono text-sm text-[var(--color-muted)] transition-colors hover:border-[var(--color-muted)] hover:text-[var(--color-text)]"
+        className="flex h-10 w-10 items-center justify-center rounded-none border border-[var(--color-border)] font-mono text-sm text-[var(--color-muted)] transition-colors hover:border-[var(--color-muted)] hover:text-[var(--color-text)]"
         aria-label="Skip to next"
       >
         ▶▶

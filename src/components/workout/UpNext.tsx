@@ -10,8 +10,8 @@ export const UpNext: React.FC<Props> = ({ step }) => {
   return (
     <div className="flex items-center gap-2 font-mono text-xs text-[var(--color-muted)]">
       <span className="opacity-50">▸</span>
-      <span className="uppercase tracking-wider opacity-60">Up Next</span>
-      <span className="opacity-80 text-[var(--color-text)]">{step.exercise}</span>
+      <span className="tracking-wider uppercase opacity-60">Up Next</span>
+      <span className="text-[var(--color-text)] opacity-80">{step.exercise}</span>
     </div>
   )
 }

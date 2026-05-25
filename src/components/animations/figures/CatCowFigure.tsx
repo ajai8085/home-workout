@@ -13,7 +13,10 @@ export const CatCowFigure: React.FC<Props> = ({ color }) => {
         cx="158"
         cy="95"
         r="16"
-        style={{ transformOrigin: '150px 115px', animation: 'cat-cow-head 2s ease-in-out infinite' }}
+        style={{
+          transformOrigin: '150px 115px',
+          animation: 'cat-cow-head 2s ease-in-out infinite',
+        }}
       />
       <path
         d="M 55 115 C 85 90 120 90 150 115"

@@ -27,8 +27,8 @@ export const SequenceList: React.FC<Props> = ({ steps, currentIndex }) => {
   const groups = buildPhaseGroups(steps)
 
   return (
-    <div className="w-full space-y-1 border-t border-[var(--color-border)] pb-2 pt-4">
-      <p className="mb-3 px-1 font-mono text-[10px] uppercase tracking-widest text-[var(--color-muted)]">
+    <div className="w-full space-y-1 border-t border-[var(--color-border)] pt-4 pb-2">
+      <p className="mb-3 px-1 font-mono text-[10px] tracking-widest text-[var(--color-muted)] uppercase">
         Full Sequence
       </p>
       {groups.map((group) => {
@@ -40,9 +40,13 @@ export const SequenceList: React.FC<Props> = ({ steps, currentIndex }) => {
         return (
           <div key={group.phase}>
             <div
-              className="mb-0.5 flex items-center gap-1 px-1 font-mono text-[10px] uppercase tracking-widest"
+              className="mb-0.5 flex items-center gap-1 px-1 font-mono text-[10px] tracking-widest uppercase"
               style={{
-                color: groupComplete ? 'var(--color-muted)' : groupActive ? color : 'var(--color-muted)',
+                color: groupComplete
+                  ? 'var(--color-muted)'
+                  : groupActive
+                    ? color
+                    : 'var(--color-muted)',
                 opacity: groupComplete ? 0.5 : 1,
               }}
             >
@@ -73,7 +77,9 @@ export const SequenceList: React.FC<Props> = ({ steps, currentIndex }) => {
                   ) : (
                     <span className="w-2" />
                   )}
-                  <span className={step.type === 'rest' ? 'italic opacity-60' : ''}>{step.exercise}</span>
+                  <span className={step.type === 'rest' ? 'italic opacity-60' : ''}>
+                    {step.exercise}
+                  </span>
                   <span className="ml-auto text-[10px] opacity-50">{step.duration}s</span>
                 </div>
               )

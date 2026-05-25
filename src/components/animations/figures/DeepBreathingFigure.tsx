@@ -15,7 +15,10 @@ export const DeepBreathingFigure: React.FC<Props> = ({ color }) => {
         y1="48"
         x2="100"
         y2="148"
-        style={{ transformOrigin: '100px 98px', animation: 'breathe-chest 4s ease-in-out infinite' }}
+        style={{
+          transformOrigin: '100px 98px',
+          animation: 'breathe-chest 4s ease-in-out infinite',
+        }}
       />
       <line x1="72" y1="78" x2="128" y2="78" />
       <line
