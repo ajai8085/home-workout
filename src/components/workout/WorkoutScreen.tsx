@@ -1,0 +1,121 @@
+import { useEffect, useRef } from 'react'
+import { ExerciseAnimation } from '../animations/ExerciseAnimation'
+import { TOTAL_DURATION, WORKOUT_STEPS } from '../../data/workoutData'
+import type { AudioControls } from '../../hooks/useAudio'
+import { useWakeLock } from '../../hooks/useWakeLock'
+import { useWorkoutTimer } from '../../hooks/useWorkoutTimer'
+import { PHASE_COLORS, REST_COLOR } from '../../types/workout'
+import { CountdownClock } from './CountdownClock'
+import { ExerciseName } from './ExerciseName'
+import { FormHint } from './FormHint'
+import { PhaseTag } from './PhaseTag'
+import { ProgressBar } from './ProgressBar'
+import { SequenceList } from './SequenceList'
+import { StepCounter } from './StepCounter'
+import { UpNext } from './UpNext'
+import { WorkoutControls } from './WorkoutControls'
+
+interface Props {
+  audio: AudioControls
+  onComplete: () => void
+  onReset: () => void
+}
+
+export function WorkoutScreen({ audio, onComplete, onReset }: Props) {
+  const wakeLock = useWakeLock()
+  const hasStarted = useRef(false)
+
+  const timer = useWorkoutTimer({
+    steps: WORKOUT_STEPS,
+    onBeep: audio.playBeep,
+    onTransition: audio.playTransition,
+    onComplete,
+  })
+
+  useEffect(() => {
+    if (hasStarted.current) return
+    hasStarted.current = true
+    wakeLock.request()
+    timer.start()
+    return () => {
+      wakeLock.release()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const currentStep = WORKOUT_STEPS[timer.stepIndex]
+  const nextStep = WORKOUT_STEPS[timer.stepIndex + 1]
+  const isRest = currentStep.type === 'rest'
+  const isWarning = !isRest && timer.timeRemaining <= 3 && timer.timeRemaining > 0
+  const phaseColor = isRest ? REST_COLOR : PHASE_COLORS[currentStep.phase]
+
+  const elapsed =
+    WORKOUT_STEPS.slice(0, timer.stepIndex).reduce((s, st) => s + st.duration, 0) +
+    (currentStep.duration - timer.timeRemaining)
+  const progressPct = (elapsed / TOTAL_DURATION) * 100
+
+  return (
+    <div
+      className="flex min-h-dvh w-full flex-col"
+      style={{ background: 'var(--color-bg)', maxWidth: 480, margin: '0 auto' }}
+    >
+      {/* Ambient glow that matches current phase */}
+      <div
+        className="pointer-events-none fixed inset-0 transition-all duration-1000"
+        style={{
+          background: `radial-gradient(ellipse 70% 40% at 50% 20%, ${phaseColor}08 0%, transparent 70%)`,
+        }}
+      />
+
+      <div className="relative flex flex-col gap-4 px-4 pt-4 pb-8">
+        {/* Top progress bar */}
+        <ProgressBar progress={progressPct} color={phaseColor} />
+
+        {/* Phase badge */}
+        <div className="flex justify-center">
+          <PhaseTag label={currentStep.phaseLabel} color={phaseColor} />
+        </div>
+
+        {/* SVG figure */}
+        <ExerciseAnimation animationKey={currentStep.animation} color={phaseColor} />
+
+        {/* Exercise title */}
+        <ExerciseName name={currentStep.exercise} color={phaseColor} />
+
+        {/* Form hint */}
+        <FormHint hint={currentStep.hint} />
+
+        {/* Countdown */}
+        <div className="flex flex-col items-center gap-1">
+          <CountdownClock
+            seconds={timer.timeRemaining}
+            isWarning={isWarning}
+            isRest={isRest}
+            phaseColor={phaseColor}
+          />
+          <StepCounter current={timer.stepIndex + 1} total={WORKOUT_STEPS.length} />
+        </div>
+
+        {/* Up next */}
+        <div className="flex justify-center">
+          <UpNext step={nextStep} />
+        </div>
+
+        {/* Controls */}
+        <div className="mt-2 flex justify-center">
+          <WorkoutControls
+            status={timer.status}
+            phaseColor={phaseColor}
+            onPause={timer.pause}
+            onResume={timer.resume}
+            onSkip={timer.skip}
+            onReset={onReset}
+          />
+        </div>
+
+        {/* Sequence list */}
+        <SequenceList steps={WORKOUT_STEPS} currentIndex={timer.stepIndex} />
+      </div>
+    </div>
+  )
+}

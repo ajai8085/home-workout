@@ -1,111 +1,479 @@
 @import 'tailwindcss';
 
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@theme {
+  --font-display: 'Antonio', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --color-bg: #0a0e0d;
+  --color-card: #131a16;
+  --color-surface: #1a231e;
+  --color-border: #1f2e27;
+  --color-muted: #4a6058;
+  --color-text: #c8d8d0;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --color-lime: #d4ff3a;
+  --color-orange: #ff8c3a;
+  --color-pink: #ff3a6b;
+  --color-blue: #3da5ff;
+  --color-purple: #9b7dff;
+  --color-warn: #ff8c3a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+/* ─── Countdown pulse / warning ─────────────────────────────────────────── */
+@keyframes clock-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+/* ─── Progress bar fill ──────────────────────────────────────────────────── */
+@keyframes progress-flash {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
   }
 }
-p {
-  margin: 0;
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FIGURE KEYFRAMES — prefixed per exercise to avoid collisions
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* March / High-Knee March (side view) */
+@keyframes march-front-thigh {
+  0%,
+  100% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(-45deg);
+  }
+}
+@keyframes march-front-shin {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(-55deg);
+  }
+}
+@keyframes march-back-thigh {
+  0%,
+  100% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+}
+@keyframes march-back-shin {
+  0%,
+  100% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+@keyframes march-front-arm {
+  0%,
+  100% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(25deg);
+  }
+}
+@keyframes march-back-arm {
+  0%,
+  100% {
+    transform: rotate(25deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* Cat–Cow */
+@keyframes cat-cow-spine {
+  0%,
+  100% {
+    d: path('M 55 115 C 85 90 120 90 150 115');
+  }
+  50% {
+    d: path('M 55 115 C 85 142 120 142 150 115');
+  }
+}
+@keyframes cat-cow-head {
+  0%,
+  100% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+@keyframes cat-cow-tail {
+  0%,
+  100% {
+    transform: rotate(25deg);
+  }
+  50% {
+    transform: rotate(-15deg);
+  }
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* Hip Circles (front view) */
+@keyframes hip-circles-hips {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(12px, -5px);
+  }
+  50% {
+    transform: translate(0, -10px);
+  }
+  75% {
+    transform: translate(-12px, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Glute Bridge (side view) */
+@keyframes glute-bridge-hips {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-28deg);
+  }
+}
+@keyframes glute-bridge-torso {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-28deg);
+  }
+}
+
+/* World's Greatest Stretch */
+@keyframes wgs-arm {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-140deg);
+  }
+}
+
+/* Arm Circles */
+@keyframes arm-circles-left {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes arm-circles-right {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Squat (front view) */
+@keyframes squat-body-down {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(32px);
+  }
+}
+@keyframes squat-left-thigh {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+}
+@keyframes squat-right-thigh {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+}
+
+/* Wall Push-Up (side view) */
+@keyframes wall-push-body {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(22px);
+  }
+}
+
+/* Reverse Lunge (side view) */
+@keyframes reverse-lunge-back-leg {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(35deg);
+  }
+}
+@keyframes reverse-lunge-back-shin {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-70deg);
+  }
+}
+
+/* Bird-Dog (side view) */
+@keyframes bird-dog-arm {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+}
+@keyframes bird-dog-leg {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-35deg);
+  }
+}
+
+/* Wall Mountain Climbers (side view) */
+@keyframes wmc-front-knee {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-55deg);
+  }
+}
+@keyframes wmc-back-knee {
+  0%,
+  100% {
+    transform: rotate(-55deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Skater Hops (front view) */
+@keyframes skater-body-lean {
+  0%,
+  100% {
+    transform: translateX(18px) rotate(8deg);
+  }
+  50% {
+    transform: translateX(-18px) rotate(-8deg);
+  }
+}
+@keyframes skater-trail-leg {
+  0%,
+  100% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+}
+
+/* Squat-to-Reach (front view) */
+@keyframes str-body {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40%,
+  60% {
+    transform: translateY(30px);
+  }
+}
+@keyframes str-arms {
+  0%,
+  100% {
+    transform: rotate(-155deg);
+  }
+  40%,
+  60% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Step-Jacks (front view) */
+@keyframes stepjack-left-leg {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-22deg);
+  }
+}
+@keyframes stepjack-right-leg {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(22deg);
+  }
+}
+@keyframes stepjack-left-arm {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-80deg);
+  }
+}
+@keyframes stepjack-right-arm {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(80deg);
+  }
+}
+
+/* Standing Forward Fold (side view) */
+@keyframes sff-torso {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(75deg);
+  }
+}
+@keyframes sff-arms {
+  0%,
+  100% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(50deg);
+  }
+}
+@keyframes sff-head {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(55px) translateX(25px);
+  }
+}
+
+/* Kneeling Hip Flexor (side view) */
+@keyframes khf-hip-press {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+/* Deep Breathing (front view) */
+@keyframes breathe-arms {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-55deg);
+  }
+}
+@keyframes breathe-chest {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.06);
+  }
+}
+
+/* Rest — gentle sway */
+@keyframes rest-sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
 }
