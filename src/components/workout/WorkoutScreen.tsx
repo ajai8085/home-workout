@@ -21,6 +21,13 @@ interface Props {
   onReset: () => void
 }
 
+const formatTime = (seconds: number): string => {
+  const clamped = Math.max(0, Math.floor(seconds))
+  const m = Math.floor(clamped / 60)
+  const s = clamped % 60
+  return `${m}:${String(s).padStart(2, '0')}`
+}
+
 export const WorkoutScreen: React.FC<Props> = ({ audio, onComplete, onReset }) => {
   const wakeLock = useWakeLock()
   const hasStarted = useRef(false)
@@ -67,7 +74,14 @@ export const WorkoutScreen: React.FC<Props> = ({ audio, onComplete, onReset }) =
       />
 
       <div className="relative flex flex-col gap-4 px-4 pt-4 pb-8">
-        <ProgressBar progress={progressPct} color={phaseColor} />
+        <div className="flex flex-col gap-1.5">
+          <ProgressBar progress={progressPct} color={phaseColor} />
+          <div className="flex items-center justify-between font-mono text-[11px] tabular-nums text-[var(--color-muted)]">
+            <span style={{ color: phaseColor }}>{formatTime(elapsed)}</span>
+            <span>{formatTime(TOTAL_DURATION - elapsed)} left</span>
+            <span>{formatTime(TOTAL_DURATION)}</span>
+          </div>
+        </div>
 
         <div className="flex justify-center">
           <PhaseTag label={currentStep.phaseLabel} color={phaseColor} />
