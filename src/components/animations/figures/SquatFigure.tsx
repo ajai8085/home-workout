@@ -9,8 +9,8 @@ export const SquatFigure: React.FC<Props> = ({ color }) => {
 
   return (
     <svg viewBox="0 0 200 270" fill="none" {...s}>
-      <circle cx="100" cy="30" r="18" />
       <g style={{ animation: 'squat-body-down 1.2s ease-in-out infinite alternate' }}>
+        <circle cx="100" cy="30" r="18" />
         <line x1="100" y1="48" x2="100" y2="148" />
         <line x1="72" y1="78" x2="128" y2="78" />
         <line x1="72" y1="78" x2="52" y2="125" />
