@@ -62,7 +62,7 @@ export const WorkoutScreen: React.FC<Props> = ({ audio, onComplete, onReset }) =
       <div
         className="pointer-events-none fixed inset-0 transition-all duration-1000"
         style={{
-          background: `radial-gradient(ellipse 70% 40% at 50% 20%, ${phaseColor}08 0%, transparent 70%)`,
+          background: `radial-gradient(ellipse 70% 40% at 50% 20%, color-mix(in srgb, ${phaseColor} 7%, transparent) 0%, transparent 70%)`,
         }}
       />
 

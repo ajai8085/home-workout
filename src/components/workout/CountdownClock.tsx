@@ -18,7 +18,7 @@ export const CountdownClock: React.FC<Props> = ({ seconds, isWarning, isRest, ph
       style={{
         color,
         animation: isWarning ? 'clock-pulse 0.8s ease-in-out infinite' : undefined,
-        textShadow: `0 0 40px ${color}50`,
+        textShadow: `0 0 40px color-mix(in srgb, ${color} 35%, transparent)`,
       }}
     >
       {display}

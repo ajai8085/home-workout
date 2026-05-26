@@ -14,7 +14,7 @@ export const CompletionScreen: React.FC<Props> = ({ onReset }) => {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 60% 50% at 50% 45%, rgba(155,125,255,0.12) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 50% at 50% 45%, color-mix(in srgb, var(--color-purple) 12%, transparent) 0%, transparent 70%)',
         }}
       />
 
@@ -51,8 +51,8 @@ export const CompletionScreen: React.FC<Props> = ({ onReset }) => {
           className="font-display w-full rounded-2xl py-5 text-2xl font-bold tracking-wider uppercase transition-all active:scale-95"
           style={{
             background: 'var(--color-purple)',
-            color: '#fff',
-            boxShadow: '0 0 40px rgba(155,125,255,0.3)',
+            color: 'var(--color-on-accent)',
+            boxShadow: '0 0 40px color-mix(in srgb, var(--color-purple) 30%, transparent)',
           }}
         >
           Go Again

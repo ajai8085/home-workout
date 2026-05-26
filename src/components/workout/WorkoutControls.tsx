@@ -61,8 +61,8 @@ export const WorkoutControls: React.FC<Props> = ({
         className="flex h-12 w-12 items-center justify-center transition-all active:scale-95"
         style={{
           background: phaseColor,
-          color: '#0a0e0d',
-          boxShadow: `0 0 20px ${phaseColor}40`,
+          color: 'var(--color-on-accent)',
+          boxShadow: `0 0 20px color-mix(in srgb, ${phaseColor} 30%, transparent)`,
         }}
         aria-label={isPaused ? 'Resume' : 'Pause'}
       >

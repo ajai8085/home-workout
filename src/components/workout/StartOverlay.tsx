@@ -14,7 +14,7 @@ export const StartOverlay: React.FC<Props> = ({ onStart }) => {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 60% 50% at 50% 40%, rgba(212,255,58,0.06) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 50% at 50% 40%, color-mix(in srgb, var(--color-lime) 8%, transparent) 0%, transparent 70%)',
         }}
       />
 
@@ -42,10 +42,10 @@ export const StartOverlay: React.FC<Props> = ({ onStart }) => {
         >
           {(
             [
-              ['Mobility', '4 min', '#d4ff3a'],
-              ['Strength × 2', '6 min', '#ff8c3a'],
-              ['Cardio × 2', '8 min', '#ff3a6b'],
-              ['Cool Down', '2 min', '#9b7dff'],
+              ['Mobility', '4 min', 'var(--color-lime)'],
+              ['Strength × 2', '6 min', 'var(--color-orange)'],
+              ['Cardio × 2', '8 min', 'var(--color-pink)'],
+              ['Cool Down', '2 min', 'var(--color-purple)'],
             ] as [string, string, string][]
           ).map(([label, time, col]) => (
             <div key={label} className="flex items-center justify-between font-mono text-sm">
@@ -64,8 +64,8 @@ export const StartOverlay: React.FC<Props> = ({ onStart }) => {
           className="font-display w-full rounded-2xl py-5 text-2xl font-bold tracking-wider uppercase transition-all active:scale-95"
           style={{
             background: 'var(--color-lime)',
-            color: 'var(--color-bg)',
-            boxShadow: '0 0 40px rgba(212,255,58,0.3)',
+            color: 'var(--color-on-accent)',
+            boxShadow: '0 0 40px color-mix(in srgb, var(--color-lime) 30%, transparent)',
           }}
         >
           Start Workout

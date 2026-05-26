@@ -3,20 +3,46 @@
 @theme {
   --font-display: 'Antonio', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ─── Light theme (default) ──────────────────────────────────────────────── */
+:root {
+  color-scheme: light;
+
+  --color-bg: #eef2ef;
+  --color-card: #ffffff;
+  --color-surface: #e3e9e4;
+  --color-border: #cdd6d0;
+  --color-muted: #51635b;
+  --color-text: #141c18;
+  --color-on-accent: #ffffff;
+
+  --color-lime: #3f7d00;
+  --color-orange: #c85a08;
+  --color-pink: #d11450;
+  --color-blue: #1170cf;
+  --color-purple: #6536cc;
+  --color-warn: #c85a08;
+}
+
+/* ─── Dark theme ─────────────────────────────────────────────────────────── */
+.dark {
+  color-scheme: dark;
 
   --color-bg: #0a0e0d;
   --color-card: #131a16;
   --color-surface: #1a231e;
-  --color-border: #1f2e27;
-  --color-muted: #4a6058;
-  --color-text: #c8d8d0;
+  --color-border: #2a3a32;
+  --color-muted: #74907f;
+  --color-text: #e5efe9;
+  --color-on-accent: #0a0e0d;
 
-  --color-lime: #d4ff3a;
-  --color-orange: #ff8c3a;
-  --color-pink: #ff3a6b;
-  --color-blue: #3da5ff;
-  --color-purple: #9b7dff;
-  --color-warn: #ff8c3a;
+  --color-lime: #cbf73e;
+  --color-orange: #ff9a4d;
+  --color-pink: #ff5081;
+  --color-blue: #4cb0ff;
+  --color-purple: #ab8dff;
+  --color-warn: #ff9a4d;
 }
 
 *,
@@ -41,6 +67,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
 #root {

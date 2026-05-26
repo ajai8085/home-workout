@@ -65,7 +65,9 @@ export const SequenceList: React.FC<Props> = ({ steps, currentIndex }) => {
                   className="flex items-center gap-2 rounded px-2 py-0.5 font-mono text-xs"
                   style={{
                     opacity: isDone ? 0.3 : 1,
-                    background: isCurrent ? `${stepColor}15` : 'transparent',
+                    background: isCurrent
+                      ? `color-mix(in srgb, ${stepColor} 13%, transparent)`
+                      : 'transparent',
                     color: isCurrent ? stepColor : 'var(--color-muted)',
                     textDecoration: isDone ? 'line-through' : 'none',
                   }}

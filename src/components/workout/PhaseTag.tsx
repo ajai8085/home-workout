@@ -11,8 +11,8 @@ export const PhaseTag: React.FC<Props> = ({ label, color }) => {
       className="inline-flex items-center rounded-full px-3 py-1 font-mono text-xs font-medium tracking-widest uppercase"
       style={{
         color,
-        background: `${color}18`,
-        border: `1px solid ${color}40`,
+        background: `color-mix(in srgb, ${color} 12%, transparent)`,
+        border: `1px solid color-mix(in srgb, ${color} 30%, transparent)`,
       }}
     >
       {label}
