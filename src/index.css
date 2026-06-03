@@ -175,10 +175,10 @@ body {
 @keyframes cat-cow-spine {
   0%,
   100% {
-    d: path('M 55 115 C 85 90 120 90 150 115');
+    d: path('M 50 110 C 85 86 125 86 160 110');
   }
   50% {
-    d: path('M 55 115 C 85 142 120 142 150 115');
+    d: path('M 50 110 C 85 134 125 134 160 110');
   }
 }
 @keyframes cat-cow-head {
@@ -200,42 +200,46 @@ body {
   }
 }
 
-/* Hip Circles (front view) */
-@keyframes hip-circles-hips {
-  0% {
-    transform: translate(0, 0);
+/* Hip Circles (front view) — pelvis traces a circle, neck/knees/feet stay planted */
+@keyframes hip-circles-spine {
+  0%,
+  100% {
+    d: path('M 100 80 L 114 150');
   }
   25% {
-    transform: translate(12px, -5px);
+    d: path('M 100 80 L 100 141');
   }
   50% {
-    transform: translate(0, -10px);
+    d: path('M 100 80 L 86 150');
   }
   75% {
-    transform: translate(-12px, -5px);
+    d: path('M 100 80 L 100 159');
   }
+}
+@keyframes hip-circles-lower {
+  0%,
   100% {
-    transform: translate(0, 0);
+    d: path('M 100 150 L 128 150 M 100 150 L 66 206 L 64 250 M 128 150 L 134 206 L 136 250');
+  }
+  25% {
+    d: path('M 86 141 L 114 141 M 86 141 L 66 206 L 64 250 M 114 141 L 134 206 L 136 250');
+  }
+  50% {
+    d: path('M 72 150 L 100 150 M 72 150 L 66 206 L 64 250 M 100 150 L 134 206 L 136 250');
+  }
+  75% {
+    d: path('M 86 159 L 114 159 M 86 159 L 66 206 L 64 250 M 114 159 L 134 206 L 136 250');
   }
 }
 
-/* Glute Bridge (side view) */
-@keyframes glute-bridge-hips {
+/* Glute Bridge (side view) — hip apex lifts as one connected chain */
+@keyframes glute-bridge-lift {
   0%,
   100% {
-    transform: rotate(0deg);
+    d: path('M 48 140 L 106 140 L 150 114');
   }
   50% {
-    transform: rotate(-28deg);
-  }
-}
-@keyframes glute-bridge-torso {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(-28deg);
+    d: path('M 48 140 L 106 100 L 150 114');
   }
 }
 
@@ -268,32 +272,32 @@ body {
   }
 }
 
-/* Squat (front view) */
+/* Squat (front view) — hips drop, knees bow out, feet stay planted */
 @keyframes squat-body-down {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(32px);
+    transform: translateY(34px);
   }
 }
-@keyframes squat-left-thigh {
+@keyframes squat-left-leg {
   0%,
   100% {
-    transform: rotate(0deg);
+    d: path('M 84 150 L 80 202 L 79 250');
   }
   50% {
-    transform: rotate(30deg);
+    d: path('M 84 184 L 61 210 L 79 250');
   }
 }
-@keyframes squat-right-thigh {
+@keyframes squat-right-leg {
   0%,
   100% {
-    transform: rotate(0deg);
+    d: path('M 116 150 L 120 202 L 121 250');
   }
   50% {
-    transform: rotate(-30deg);
+    d: path('M 116 184 L 139 210 L 121 250');
   }
 }
 
@@ -368,23 +372,29 @@ body {
   }
 }
 
-/* Skater Hops (front view) */
-@keyframes skater-body-lean {
+/* Skater Hops (front view) — lateral bound with a hop, trail leg sweeps behind */
+@keyframes skater-bound {
   0%,
   100% {
-    transform: translateX(18px) rotate(8deg);
+    transform: translateX(-24px) translateY(0) rotate(-7deg);
+  }
+  25% {
+    transform: translateX(0) translateY(-18px) rotate(0deg);
   }
   50% {
-    transform: translateX(-18px) rotate(-8deg);
+    transform: translateX(24px) translateY(0) rotate(7deg);
+  }
+  75% {
+    transform: translateX(0) translateY(-18px) rotate(0deg);
   }
 }
 @keyframes skater-trail-leg {
   0%,
   100% {
-    transform: rotate(-30deg);
+    d: path('M 122 150 L 138 196 L 120 228');
   }
   50% {
-    transform: rotate(30deg);
+    d: path('M 122 150 L 152 192 L 178 206');
   }
 }
 
@@ -407,6 +417,26 @@ body {
   40%,
   60% {
     transform: rotate(0deg);
+  }
+}
+@keyframes str-left-leg {
+  0%,
+  100% {
+    d: path('M 82 148 L 70 205 L 68 258');
+  }
+  40%,
+  60% {
+    d: path('M 82 178 L 58 214 L 68 258');
+  }
+}
+@keyframes str-right-leg {
+  0%,
+  100% {
+    d: path('M 118 148 L 130 205 L 132 258');
+  }
+  40%,
+  60% {
+    d: path('M 118 178 L 142 214 L 132 258');
   }
 }
 

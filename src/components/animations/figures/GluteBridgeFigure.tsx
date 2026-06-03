@@ -8,29 +8,23 @@ export const GluteBridgeFigure: React.FC<Props> = ({ color }) => {
   const s = { stroke: color, strokeWidth: 3.5, strokeLinecap: 'round' as const }
 
   return (
-    <svg viewBox="0 0 200 180" fill="none" {...s}>
-      <circle cx="28" cy="105" r="16" />
-      <g
-        style={{
-          transformOrigin: '50px 118px',
-          animation: 'glute-bridge-torso 1.4s ease-in-out infinite alternate',
-        }}
-      >
-        <line x1="50" y1="118" x2="108" y2="118" />
-      </g>
-      <line x1="50" y1="118" x2="50" y2="140" />
-      <g
-        style={{
-          transformOrigin: '155px 140px',
-          animation: 'glute-bridge-hips 1.4s ease-in-out infinite alternate',
-        }}
-      >
-        <line x1="108" y1="118" x2="155" y2="118" />
-        <line x1="130" y1="118" x2="130" y2="145" />
-        <line x1="155" y1="118" x2="155" y2="145" />
-      </g>
-      <line x1="120" y1="145" x2="165" y2="145" />
-      <line x1="20" y1="150" x2="185" y2="150" strokeDasharray="4 4" strokeOpacity={0.3} />
+    <svg viewBox="0 0 200 170" fill="none" {...s}>
+      {/* Head resting on the floor */}
+      <circle cx="24" cy="129" r="13" />
+      <line x1="35" y1="132" x2="48" y2="140" />
+
+      {/* Shoulder → hip → knee chain — hip lifts without ever detaching */}
+      <path
+        d="M 48 140 L 106 140 L 150 114"
+        fill="none"
+        style={{ animation: 'glute-bridge-lift 1.6s ease-in-out infinite' }}
+      />
+
+      {/* Shin + planted foot (static) */}
+      <line x1="150" y1="114" x2="150" y2="150" />
+      <line x1="138" y1="150" x2="163" y2="150" />
+
+      <line x1="16" y1="152" x2="186" y2="152" strokeDasharray="4 4" strokeOpacity={0.3} />
     </svg>
   )
 }
