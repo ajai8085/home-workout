@@ -63,20 +63,20 @@ export const WorkoutScreen: React.FC<Props> = ({ audio, onComplete, onReset }) =
 
   return (
     <div
-      className="flex min-h-dvh w-full flex-col"
-      style={{ background: 'var(--color-bg)', maxWidth: 480, margin: '0 auto' }}
+      className="mx-auto flex min-h-dvh w-full max-w-[30rem] flex-col md:max-w-xl"
+      style={{ background: 'var(--color-bg)' }}
     >
       <div
         className="pointer-events-none fixed inset-0 transition-all duration-1000"
         style={{
-          background: `radial-gradient(ellipse 70% 40% at 50% 20%, color-mix(in srgb, ${phaseColor} 7%, transparent) 0%, transparent 70%)`,
+          background: `radial-gradient(ellipse 80% 45% at 50% 18%, color-mix(in srgb, ${phaseColor} 11%, transparent) 0%, transparent 72%)`,
         }}
       />
 
-      <div className="relative flex flex-col gap-4 px-4 pt-4 pb-8">
+      <div className="relative flex flex-col gap-4 px-4 pt-4 pb-8 sm:gap-5 sm:px-6 sm:pt-6">
         <div className="flex flex-col gap-1.5">
           <ProgressBar progress={progressPct} color={phaseColor} />
-          <div className="flex items-center justify-between font-mono text-[11px] tabular-nums text-[var(--color-muted)]">
+          <div className="flex items-center justify-between font-mono text-xs text-[var(--color-muted)] tabular-nums">
             <span style={{ color: phaseColor }}>{formatTime(elapsed)}</span>
             <span>{formatTime(TOTAL_DURATION - elapsed)} left</span>
             <span>{formatTime(TOTAL_DURATION)}</span>

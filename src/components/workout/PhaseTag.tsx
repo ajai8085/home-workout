@@ -8,11 +8,11 @@ interface Props {
 export const PhaseTag: React.FC<Props> = ({ label, color }) => {
   return (
     <div
-      className="inline-flex items-center rounded-full px-3 py-1 font-mono text-xs font-medium tracking-widest uppercase"
+      className="inline-flex items-center rounded-full px-4 py-1.5 font-mono text-sm font-semibold tracking-widest uppercase"
       style={{
         color,
-        background: `color-mix(in srgb, ${color} 12%, transparent)`,
-        border: `1px solid color-mix(in srgb, ${color} 30%, transparent)`,
+        background: `color-mix(in srgb, ${color} 20%, transparent)`,
+        border: `1px solid color-mix(in srgb, ${color} 45%, transparent)`,
       }}
     >
       {label}

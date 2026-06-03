@@ -18,20 +18,20 @@ export const CompletionScreen: React.FC<Props> = ({ onReset }) => {
         }}
       />
 
-      <div className="relative flex w-full max-w-sm flex-col items-center gap-8 text-center">
+      <div className="relative flex w-full max-w-sm flex-col items-center gap-8 text-center md:max-w-md md:gap-10">
         <div className="flex flex-col gap-3">
           <div className="font-display text-7xl" style={{ color: 'var(--color-purple)' }}>
             🎉
           </div>
           <h1
-            className="font-display text-5xl leading-none font-bold uppercase"
+            className="font-display text-[clamp(2.75rem,11vw,4.5rem)] leading-none font-bold uppercase"
             style={{ color: 'var(--color-purple)' }}
           >
             Workout
             <br />
             Complete!
           </h1>
-          <p className="font-mono text-sm" style={{ color: 'var(--color-muted)' }}>
+          <p className="font-mono text-base" style={{ color: 'var(--color-muted)' }}>
             20 minutes · 37 steps · All done
           </p>
         </div>
@@ -40,7 +40,7 @@ export const CompletionScreen: React.FC<Props> = ({ onReset }) => {
           className="w-full rounded-2xl p-5 text-left"
           style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}
         >
-          <p className="font-mono text-xs leading-relaxed" style={{ color: 'var(--color-text)' }}>
+          <p className="font-mono text-sm leading-relaxed" style={{ color: 'var(--color-text)' }}>
             Great session! You worked through mobility, two strength rounds, two cardio rounds, and
             a full cool-down. Hydrate, rest, and do this again tomorrow.
           </p>
@@ -48,7 +48,7 @@ export const CompletionScreen: React.FC<Props> = ({ onReset }) => {
 
         <button
           onClick={onReset}
-          className="font-display w-full rounded-2xl py-5 text-2xl font-bold tracking-wider uppercase transition-all active:scale-95"
+          className="font-display w-full rounded-2xl py-5 text-2xl font-bold tracking-wider uppercase transition-all active:scale-95 md:py-6 md:text-3xl"
           style={{
             background: 'var(--color-purple)',
             color: 'var(--color-on-accent)',

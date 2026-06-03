@@ -8,10 +8,10 @@ interface Props {
 export const UpNext: React.FC<Props> = ({ step }) => {
   if (!step) return null
   return (
-    <div className="flex items-center gap-2 font-mono text-xs text-[var(--color-muted)]">
-      <span className="opacity-50">▸</span>
-      <span className="tracking-wider uppercase opacity-60">Up Next</span>
-      <span className="text-[var(--color-text)] opacity-80">{step.exercise}</span>
+    <div className="flex items-center gap-2 font-mono text-sm text-[var(--color-muted)]">
+      <span aria-hidden>▸</span>
+      <span className="tracking-wider uppercase">Up Next</span>
+      <span className="font-medium text-[var(--color-text)]">{step.exercise}</span>
     </div>
   )
 }

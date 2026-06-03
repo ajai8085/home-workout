@@ -19,6 +19,7 @@ No test runner is configured.
 ## Deploy
 
 Two paths exist:
+
 - **Auto:** push to `main` triggers `.github/workflows/deploy.yml`, which builds and publishes `./dist` to the `gh-pages` branch via `peaceiris/actions-gh-pages@v4`.
 - **Manual:** `npm run deploy` uses the `gh-pages` CLI.
 
@@ -29,28 +30,35 @@ Vite `base` is `/home-workout/` (vite.config.ts) — required because the site i
 Single-page React 19 + TS + Vite app driving a fixed 20-minute (1200 s) bodyweight workout. Tailwind v4 via `@tailwindcss/vite`; no UI library.
 
 ### Screen state machine (`src/App.tsx`)
+
 `AppScreen` = `'start' | 'workout' | 'complete'`. `App` owns the screen state and the shared `useAudio` + `useTheme` instances; `WorkoutScreen` receives `audio` as a prop so the `AudioContext` is created once (browsers require a user gesture — `initAudio` runs from the Start tap).
 
 ### Smart vs dumb split
+
 - `src/components/workout/WorkoutScreen.tsx` is the only smart workout component — it wires `useWorkoutTimer`, `useWakeLock`, and the audio prop, and computes derived values (`isWarning`, `elapsed`, `progressPct`).
 - All siblings in `src/components/workout/` are presentational, taking primitives + a `phaseColor` string.
 - `src/components/animations/ExerciseAnimation.tsx` is a `Record<AnimationKey, FC>` dispatcher — adding an exercise animation means adding a key to `AnimationKey` (`src/types/workout.ts`), creating the figure in `src/components/animations/figures/`, registering it in `FIGURE_MAP`, and adding the keyframes to `src/index.css`.
 
 ### Workout data
+
 `src/data/workoutData.ts` exports `WORKOUT_STEPS: WorkoutStep[]` (37 steps) and `TOTAL_DURATION` (sum of durations, must stay = 1200). Structure: Mobility 6×40s, Strength1 + Strength2 (with rest interleaving), Cardio1 + Cardio2, Cooldown. Each step's `phase` maps to a color via `PHASE_COLORS` in `src/types/workout.ts`; `type: 'rest'` overrides to `REST_COLOR`.
 
 ### Timer (`src/hooks/useWorkoutTimer.ts`)
+
 1 Hz `setInterval` with parallel state + ref pairs (`stepIndex`/`stepIndexRef`, etc.) so the interval callback always reads fresh values without re-creating the interval. Callbacks (`onBeep`, `onTransition`, `onComplete`) are held in refs and refreshed via effects so the timer logic depends only on `steps`. Beeps fire at t ∈ {3,2,1}. `start()` jumps to step 0 and begins ticking; `skip()` advances without resetting the run state.
 
 ### Side-effect hooks
+
 - `useAudio` lazily creates one `AudioContext` and exposes `initAudio` (resume on user gesture), `playBeep`, `playTransition`, `playCompletion`. All errors are swallowed — audio is non-essential.
 - `useWakeLock` requests `navigator.wakeLock` and re-acquires on `visibilitychange`. Released on unmount. Non-fatal if unsupported.
 - `useTheme` toggles `.dark` on `<html>` and persists to `localStorage`. Initial theme is read from the existing class (set by inline boot script in `index.html`) to avoid FOUC.
 
 ### Theming
+
 All colors are CSS variables defined in `src/index.css` under `:root` (light) and `.dark` (dark). Components reference them as `var(--color-*)` — never hardcode hex values. Phase colors come through `PHASE_COLORS` in `src/types/workout.ts`, which itself uses `var(--color-*)`.
 
 ### Animations
+
 Stick-figure SVGs in `src/components/animations/figures/` use named CSS keyframes defined in `src/index.css`. Keyframes are **prefixed per exercise** (e.g. `march-front-thigh`, `cat-cow-spine`) to avoid collisions — keep this convention when adding new ones.
 
 ## Conventions

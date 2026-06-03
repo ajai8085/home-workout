@@ -28,7 +28,7 @@ export const SequenceList: React.FC<Props> = ({ steps, currentIndex }) => {
 
   return (
     <div className="w-full space-y-1 border-t border-[var(--color-border)] pt-4 pb-2">
-      <p className="mb-3 px-1 font-mono text-[10px] tracking-widest text-[var(--color-muted)] uppercase">
+      <p className="mb-3 px-1 font-mono text-xs tracking-widest text-[var(--color-muted)] uppercase">
         Full Sequence
       </p>
       {groups.map((group) => {
@@ -40,7 +40,7 @@ export const SequenceList: React.FC<Props> = ({ steps, currentIndex }) => {
         return (
           <div key={group.phase}>
             <div
-              className="mb-0.5 flex items-center gap-1 px-1 font-mono text-[10px] tracking-widest uppercase"
+              className="mb-0.5 flex items-center gap-1 px-1 font-mono text-xs tracking-widest uppercase"
               style={{
                 color: groupComplete
                   ? 'var(--color-muted)'
@@ -62,9 +62,9 @@ export const SequenceList: React.FC<Props> = ({ steps, currentIndex }) => {
               return (
                 <div
                   key={step.id}
-                  className="flex items-center gap-2 rounded px-2 py-0.5 font-mono text-xs"
+                  className="flex items-center gap-2 rounded px-2 py-0.5 font-mono text-sm"
                   style={{
-                    opacity: isDone ? 0.3 : 1,
+                    opacity: isDone ? 0.45 : 1,
                     background: isCurrent
                       ? `color-mix(in srgb, ${stepColor} 13%, transparent)`
                       : 'transparent',
@@ -82,7 +82,7 @@ export const SequenceList: React.FC<Props> = ({ steps, currentIndex }) => {
                   <span className={step.type === 'rest' ? 'italic opacity-60' : ''}>
                     {step.exercise}
                   </span>
-                  <span className="ml-auto text-[10px] opacity-50">{step.duration}s</span>
+                  <span className="ml-auto text-xs opacity-60">{step.duration}s</span>
                 </div>
               )
             })}

@@ -51,8 +51,8 @@ export const ExerciseAnimation: React.FC<Props> = ({ animationKey, color }) => {
   const Figure = FIGURE_MAP[animationKey] ?? RestFigure
 
   return (
-    <div className="flex w-full items-center justify-center" style={{ height: 180 }}>
-      <div style={{ height: 180, width: 180 }}>
+    <div className="flex w-full items-center justify-center">
+      <div className="exercise-figure aspect-[3/4] w-[clamp(11rem,52vw,17rem)]">
         <Figure color={color} />
       </div>
     </div>

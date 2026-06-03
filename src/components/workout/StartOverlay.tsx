@@ -18,16 +18,16 @@ export const StartOverlay: React.FC<Props> = ({ onStart }) => {
         }}
       />
 
-      <div className="relative flex w-full max-w-sm flex-col items-center gap-8 text-center">
+      <div className="relative flex w-full max-w-sm flex-col items-center gap-8 text-center md:max-w-md md:gap-10">
         <div className="flex flex-col gap-2">
           <p
-            className="font-mono text-xs tracking-widest uppercase"
-            style={{ color: 'var(--color-lime)', opacity: 0.8 }}
+            className="font-mono text-sm tracking-widest uppercase"
+            style={{ color: 'var(--color-lime)' }}
           >
             20-Min Home Workout
           </p>
           <h1
-            className="font-display text-5xl leading-none font-bold uppercase"
+            className="font-display text-[clamp(2.75rem,11vw,4.5rem)] leading-none font-bold uppercase"
             style={{ color: 'var(--color-lime)' }}
           >
             Ready to
@@ -48,20 +48,20 @@ export const StartOverlay: React.FC<Props> = ({ onStart }) => {
               ['Cool Down', '2 min', 'var(--color-purple)'],
             ] as [string, string, string][]
           ).map(([label, time, col]) => (
-            <div key={label} className="flex items-center justify-between font-mono text-sm">
+            <div key={label} className="flex items-center justify-between font-mono text-base">
               <span style={{ color: col }}>{label}</span>
               <span style={{ color: 'var(--color-muted)' }}>{time}</span>
             </div>
           ))}
         </div>
 
-        <p className="font-mono text-xs leading-relaxed" style={{ color: 'var(--color-muted)' }}>
+        <p className="font-mono text-sm leading-relaxed" style={{ color: 'var(--color-muted)' }}>
           Back-safe · No equipment · Beginner-friendly
         </p>
 
         <button
           onClick={onStart}
-          className="font-display w-full rounded-2xl py-5 text-2xl font-bold tracking-wider uppercase transition-all active:scale-95"
+          className="font-display w-full rounded-2xl py-5 text-2xl font-bold tracking-wider uppercase transition-all active:scale-95 md:py-6 md:text-3xl"
           style={{
             background: 'var(--color-lime)',
             color: 'var(--color-on-accent)',
