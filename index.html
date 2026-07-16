@@ -10,11 +10,15 @@
     <meta name="theme-color" content="#8a3bff" />
     <title>20-Min Home Workout</title>
     <script>
-      (function () {
+      ;(function () {
         try {
           var stored = localStorage.getItem('theme')
           var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
           if (dark) document.documentElement.classList.add('dark')
+          var palette = localStorage.getItem('palette')
+          if (palette && ['forest', 'ocean', 'sunset', 'neon'].indexOf(palette) !== -1) {
+            document.documentElement.setAttribute('data-theme', palette)
+          }
         } catch (e) {
           document.documentElement.classList.add('dark')
         }
@@ -26,8 +30,8 @@
       href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/home-workout/assets/index-B3diuDYu.js"></script>
-    <link rel="stylesheet" crossorigin href="/home-workout/assets/index-Cjb_y9bq.css">
+    <script type="module" crossorigin src="/home-workout/assets/index-BBc9LgZT.js"></script>
+    <link rel="stylesheet" crossorigin href="/home-workout/assets/index-bVi6KoSJ.css">
   </head>
   <body>
     <div id="root"></div>
