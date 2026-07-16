@@ -52,7 +52,7 @@ export const ExerciseAnimation: React.FC<Props> = ({ animationKey, color }) => {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="exercise-figure aspect-[3/4] w-[clamp(11rem,52vw,17rem)]">
+      <div className="exercise-figure aspect-[3/4] w-[clamp(9.5rem,42vw,15rem)]">
         <Figure color={color} />
       </div>
     </div>

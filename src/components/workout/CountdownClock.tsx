@@ -14,7 +14,7 @@ export const CountdownClock: React.FC<Props> = ({ seconds, isWarning, isRest, ph
 
   return (
     <div
-      className="font-display text-[clamp(5rem,23vw,9rem)] leading-none font-bold tabular-nums select-none"
+      className="font-display text-[clamp(3.5rem,14vw,5.5rem)] leading-none font-bold tabular-nums select-none"
       style={{
         color,
         animation: isWarning ? 'clock-pulse 0.8s ease-in-out infinite' : undefined,

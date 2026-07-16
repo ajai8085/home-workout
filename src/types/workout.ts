@@ -35,13 +35,13 @@ export interface WorkoutStep {
 }
 
 export const PHASE_COLORS: Record<PhaseType, string> = {
-  mobility: 'var(--color-lime)',
-  strength1: 'var(--color-orange)',
-  strength2: 'var(--color-orange)',
-  cardio1: 'var(--color-pink)',
-  cardio2: 'var(--color-pink)',
-  cooldown: 'var(--color-purple)',
+  mobility: 'var(--color-mobility)',
+  strength1: 'var(--color-strength)',
+  strength2: 'var(--color-strength)',
+  cardio1: 'var(--color-cardio)',
+  cardio2: 'var(--color-cardio)',
+  cooldown: 'var(--color-cooldown)',
 }
 
-export const REST_COLOR = 'var(--color-blue)'
+export const REST_COLOR = 'var(--color-rest)'
 export const WARNING_COLOR = 'var(--color-warn)'
