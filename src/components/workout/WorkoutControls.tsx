@@ -7,13 +7,14 @@ interface Props {
   onPause: () => void
   onResume: () => void
   onSkip: () => void
+  onPrevious: () => void
   onReset: () => void
 }
 
 const IconReset: React.FC = () => (
   <svg
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -27,13 +28,13 @@ const IconReset: React.FC = () => (
 )
 
 const IconPlay: React.FC = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
     <polygon points="6,3 20,12 6,21" />
   </svg>
 )
 
 const IconPause: React.FC = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
     <rect x="5" y="4" width="4" height="16" rx="1" />
     <rect x="15" y="4" width="4" height="16" rx="1" />
   </svg>
@@ -46,23 +47,35 @@ const IconSkip: React.FC = () => (
   </svg>
 )
 
+const IconPrevious: React.FC = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <polygon points="19,4 9,12 19,20" />
+    <rect x="3.5" y="4" width="2.5" height="16" rx="1" />
+  </svg>
+)
+
 export const WorkoutControls: React.FC<Props> = ({
   status,
   phaseColor,
   onPause,
   onResume,
   onSkip,
+  onPrevious,
   onReset,
 }) => {
   const isPaused = status === 'paused'
 
   const secondaryBtn =
-    'flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--color-border)] text-[var(--color-muted)] transition-colors hover:border-[var(--color-muted)] hover:text-[var(--color-text)] active:scale-95 sm:h-16 sm:w-16'
+    'glass-card flex h-14 w-14 items-center justify-center rounded-2xl text-[var(--color-muted)] transition-colors hover:text-[var(--color-text)] active:scale-95 sm:h-16 sm:w-16'
 
   return (
-    <div className="flex items-center gap-4">
-      <button onClick={onReset} className={secondaryBtn} aria-label="Reset workout">
+    <div className="flex items-center gap-3 sm:gap-4">
+      <button onClick={onReset} className={secondaryBtn} aria-label="End workout">
         <IconReset />
+      </button>
+
+      <button onClick={onPrevious} className={secondaryBtn} aria-label="Previous step">
+        <IconPrevious />
       </button>
 
       <button

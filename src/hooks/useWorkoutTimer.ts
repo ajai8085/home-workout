@@ -104,6 +104,14 @@ export function useWorkoutTimer({ steps, onBeep, onTransition, onComplete }: Opt
     if (statusRef.current === 'running') startTick()
   }, [jumpToStep, startTick])
 
+  const previous = useCallback(() => {
+    // Restart the current step first; go back a step only when already at its start
+    const atStepStart = timeRef.current >= steps[stepIndexRef.current].duration
+    const target = atStepStart ? Math.max(0, stepIndexRef.current - 1) : stepIndexRef.current
+    jumpToStep(target)
+    if (statusRef.current === 'running') startTick()
+  }, [jumpToStep, startTick, steps])
+
   const reset = useCallback(() => {
     clearTick()
     stepIndexRef.current = 0
@@ -116,5 +124,5 @@ export function useWorkoutTimer({ steps, onBeep, onTransition, onComplete }: Opt
 
   useEffect(() => () => clearTick(), [])
 
-  return { stepIndex, timeRemaining, status, start, pause, resume, skip, reset }
+  return { stepIndex, timeRemaining, status, start, pause, resume, skip, previous, reset }
 }

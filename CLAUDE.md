@@ -31,7 +31,7 @@ Single-page React 19 + TS + Vite app driving a fixed 20-minute (1200 s) bodyweig
 
 ### Screen state machine (`src/App.tsx`)
 
-`AppScreen` = `'start' | 'workout' | 'complete'`. `App` owns the screen state and the shared `useAudio` + `useTheme` instances; `WorkoutScreen` receives `audio` as a prop so the `AudioContext` is created once (browsers require a user gesture — `initAudio` runs from the Start tap).
+`AppScreen` = `'start' | 'ready' | 'workout' | 'complete'` (`ready` is a 5 s get-ready countdown). `App` owns the screen state plus the shared `useAudio`, `useTheme`, `useSettings`, and `useWorkoutHistory` instances; `WorkoutScreen` receives `audio` + `settings` as props so the `AudioContext` is created once (browsers require a user gesture — `initAudio` runs from the Start tap). `App` records completed sessions into history and owns the share action.
 
 ### Smart vs dumb split
 
@@ -45,17 +45,19 @@ Single-page React 19 + TS + Vite app driving a fixed 20-minute (1200 s) bodyweig
 
 ### Timer (`src/hooks/useWorkoutTimer.ts`)
 
-1 Hz `setInterval` with parallel state + ref pairs (`stepIndex`/`stepIndexRef`, etc.) so the interval callback always reads fresh values without re-creating the interval. Callbacks (`onBeep`, `onTransition`, `onComplete`) are held in refs and refreshed via effects so the timer logic depends only on `steps`. Beeps fire at t ∈ {3,2,1}. `start()` jumps to step 0 and begins ticking; `skip()` advances without resetting the run state.
+1 Hz `setInterval` with parallel state + ref pairs (`stepIndex`/`stepIndexRef`, etc.) so the interval callback always reads fresh values without re-creating the interval. Callbacks (`onBeep`, `onTransition`, `onComplete`) are held in refs and refreshed via effects so the timer logic depends only on `steps`. Beeps fire at t ∈ {3,2,1}. `start()` jumps to step 0 and begins ticking; `skip()` advances without resetting the run state; `previous()` restarts the current step, or steps back when already at the step's start.
 
 ### Side-effect hooks
 
 - `useAudio` lazily creates one `AudioContext` and exposes `initAudio` (resume on user gesture), `playBeep`, `playTransition`, `playCompletion`. All errors are swallowed — audio is non-essential.
 - `useWakeLock` requests `navigator.wakeLock` and re-acquires on `visibilitychange`. Released on unmount. Non-fatal if unsupported.
-- `useTheme` toggles `.dark` on `<html>` and persists to `localStorage`. Initial theme is read from the existing class (set by inline boot script in `index.html`) to avoid FOUC.
+- `useTheme` manages mode (`.dark` class) **and** palette (`data-theme` attribute) on `<html>`, persisting to `localStorage` keys `theme` / `palette`. Initial values are read from the DOM (set by the inline boot script in `index.html`) to avoid FOUC.
+- `useSettings` persists `{ sound, vibration, voice }` toggles to `localStorage` (`workout-settings`). Cues are dispatched in `WorkoutScreen` (beeps/haptics via timer callbacks, voice via a `stepIndex` effect using `src/utils/speech.ts`); haptics live in `src/utils/haptics.ts`.
+- `useWorkoutHistory` persists completed sessions to `localStorage` (`workout-history`) and derives `WorkoutStats` (total sessions/minutes, day streak, completedToday).
 
 ### Theming
 
-All colors are CSS variables defined in `src/index.css` under `:root` (light) and `.dark` (dark). Components reference them as `var(--color-*)` — never hardcode hex values. Phase colors come through `PHASE_COLORS` in `src/types/workout.ts`, which itself uses `var(--color-*)`.
+Four palettes — `forest` (default), `ocean`, `sunset`, `neon` — each with light + dark variants, defined in `src/index.css` (`:root`/`.dark` for forest, `[data-theme='x']`/`[data-theme='x'].dark` for the rest) and listed in `src/data/themes.ts` (picker metadata). Every palette fills the same semantic slots: `--color-bg/card/surface/border/muted/text/on-accent` plus phase colors `--color-mobility/strength/cardio/cooldown/rest/warn`; `--color-accent` always aliases the palette's signature color. Components reference them as `var(--color-*)` — never hardcode hex values. Phase colors come through `PHASE_COLORS` in `src/types/workout.ts`. Adding a palette = new CSS blocks + an entry in `PALETTES` + the id list in the `index.html` boot script.
 
 ### Animations
 

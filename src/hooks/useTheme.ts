@@ -1,30 +1,50 @@
 import { useCallback, useState } from 'react'
+import type { PaletteId } from '@/data/themes'
+import { DEFAULT_PALETTE, isPaletteId } from '@/data/themes'
 
-export type Theme = 'light' | 'dark'
+export type ThemeMode = 'light' | 'dark'
 
-const getInitialTheme = (): Theme =>
+const getInitialMode = (): ThemeMode =>
   document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 
+const getInitialPalette = (): PaletteId => {
+  const attr = document.documentElement.getAttribute('data-theme')
+  return isPaletteId(attr) ? attr : DEFAULT_PALETTE
+}
+
+const persist = (key: string, value: string) => {
+  try {
+    localStorage.setItem(key, value)
+  } catch {
+    /* ignore unavailable storage */
+  }
+}
+
 export interface ThemeControls {
-  theme: Theme
-  toggle: () => void
+  mode: ThemeMode
+  palette: PaletteId
+  toggleMode: () => void
+  setPalette: (palette: PaletteId) => void
 }
 
 export const useTheme = (): ThemeControls => {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme)
+  const [mode, setMode] = useState<ThemeMode>(getInitialMode)
+  const [palette, setPaletteState] = useState<PaletteId>(getInitialPalette)
 
-  const toggle = useCallback(() => {
-    setTheme((prev) => {
-      const next: Theme = prev === 'dark' ? 'light' : 'dark'
+  const toggleMode = useCallback(() => {
+    setMode((prev) => {
+      const next: ThemeMode = prev === 'dark' ? 'light' : 'dark'
       document.documentElement.classList.toggle('dark', next === 'dark')
-      try {
-        localStorage.setItem('theme', next)
-      } catch {
-        /* ignore unavailable storage */
-      }
+      persist('theme', next)
       return next
     })
   }, [])
 
-  return { theme, toggle }
+  const setPalette = useCallback((next: PaletteId) => {
+    document.documentElement.setAttribute('data-theme', next)
+    persist('palette', next)
+    setPaletteState(next)
+  }, [])
+
+  return { mode, palette, toggleMode, setPalette }
 }

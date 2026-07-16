@@ -10,11 +10,15 @@
     <meta name="theme-color" content="#8a3bff" />
     <title>20-Min Home Workout</title>
     <script>
-      (function () {
+      ;(function () {
         try {
           var stored = localStorage.getItem('theme')
           var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
           if (dark) document.documentElement.classList.add('dark')
+          var palette = localStorage.getItem('palette')
+          if (palette && ['forest', 'ocean', 'sunset', 'neon'].indexOf(palette) !== -1) {
+            document.documentElement.setAttribute('data-theme', palette)
+          }
         } catch (e) {
           document.documentElement.classList.add('dark')
         }
